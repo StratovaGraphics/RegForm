@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 40px 20px;
+      color: #333;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #f8f8f8;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .section {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #006299;
+      margin-bottom: 10px;
+    }
+
+    h3, h4 {
+      color: #006299;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 1rem;
+      margin-top: 6px;
+      box-sizing: border-box;
+    }
+
+    .member {
+      background: #fdfdfd;
+      border: 1px solid #95c53f;
+      padding: 24px;
+      border-radius: 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .remove-member-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background-color: #e74c3c;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .remove-member-btn:hover { background-color: #c0392b; }
+
+    button {
+      background-color: #006299;
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    button:hover { background-color: #004a74; }
+
+    #totalCount, #totalAmount {
+      font-weight: 600;
+      color: #95c53f;
+      margin-top: 10px;
+    }
+
+    .bank-details {
+      background: #006299;
+      color: #ffffff;
+      border-left: 4px solid #95c53f;
+      border-radius: 12px;
+      padding: 24px;
+      font-size: 1rem;
+      margin-top: 20px;
+    }
+
+    .header-img {
+      width: 100%;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-overlay {
+      position: absolute;
+      bottom: 15px;
+      left: 20px;
+      color: #ffffff;
+      text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-title {
+      font-size: 2rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .event-details {
+      font-size: 1rem;
+      margin-top: 8px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .footer {
+      background-color: #f8f8f8;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+      border-radius: 0 0 24px 24px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header-container">
+      <img class="header-img" src="https://i.postimg.cc/56cKXRrP/1.png" alt="10th National Conference '25 Banner">
+      <div class="header-overlay">
+        <h1 class="form-title">10th National Conference '25</h1>
+        <p class="event-details">
+          13th August, 8:30 AM onwards<br>
+          <strong>Venue:</strong> Lumina Ballroom, Cinnamon Life<br>
+          <strong>Contact:</strong> +94 77 194 4015 | info@iiasl.lk
+        </p>
+      </div>
+    </div>
+
+    <form name="event-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" class="section">
+      <input type="hidden" name="form-name" value="event-registration" />
+      <input type="hidden" name="bot-field" />
+
+      <h2>Event Registration Form</h2>
+      <h3>Main Participant</h3>
+
+      <label>Title:
+        <select name="civilStatus" required>
+          <option>Mr</option>
+          <option>Mrs</option>
+          <option>Ms</option>
+          <option>Miss</option>
+          <option>Dr</option>
+          <option>Prof</option>
+          <option>Rev</option>
+        </select>
+      </label>
+
+      <label>First Name: <input type="text" name="firstName" required></label>
+      <label>Last Name: <input type="text" name="lastName" required></label>
+
+      <label>IIA Member:
+        <select name="iiaMember" id="isMember" onchange="toggleMemberNo(this)">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+      </label>
+
+      <div id="memberNoDiv" style="display:none;">
+        <label>Member No: <input type="text" name="memberNo"></label>
+      </div>
+
+      <label>Company Name: <input type="text" name="companyName" required></label>
+      <label>Designation: <input type="text" name="designation" required></label>
+      <label>Email: <input type="email" name="email" required></label>
+      <label>Contact No (+Country Code): <input type="tel" name="contactNo" pattern="\+\d{1,3}\d{10}" placeholder="+941234567890" required></label>
+
+      <h3>Ticket Details</h3>
+      <label>Ticket Type:
+        <select name="ticketPrice" id="ticketPrice" required onchange="updateTotal()">
+          <option value="0">--Select--</option>
+          <option value="21500">IIA Member - LKR 18,500</option>
+          <option value="18500">Non-Member - LKR 21,500</option>
+        </select>
+      </label>
+
+      <div id="membersList">
+        <h3>Additional Members (Max 15)</h3>
+      </div>
+
+      <button type="button" onclick="addMember()">Add Member</button>
+
+      <div class="bank-details">
+        <h3>Bank Transfer Information</h3>
+        Bank Name: <strong>Nations Trust Bank</strong><br>
+        Branch Name: <strong>Nawam Mawatha</strong><br>
+        Bank Code: <strong>7162</strong> &nbsp;&nbsp;&nbsp; Branch Code: <strong>024</strong><br>
+        Account No.: <strong>100240011078</strong><br>
+        Account Name: <strong>The IIA Lanka Chapter</strong><br>
+        SWIFT Code: <strong>NTBCLKLX</strong>
+      </div>
+
+      <label><strong>Attach Payment Slip:</strong>
+        <input type="file" name="paymentSlip" required>
+      </label>
+
+      <h3>Total Participants: <span id="totalCount">1</span></h3>
+      <h3>Total Amount: LKR <span id="totalAmount">0</span></h3>
+
+      <button type="submit">Submit Registration</button>
+    </form>
+
+    <div class="footer">
+      &copy; 2025 The IIA Lanka Chapter. All rights reserved.
+    </div>
+  </div>
+
+  <script>
+    let memberCount = 0;
+    const maxMembers = 15;
+
+    function toggleMemberNo(select) {
+      document.getElementById("memberNoDiv").style.display = select.value === "Yes" ? "block" : "none";
+    }
+
+    function addMember() {
+      if (memberCount >= maxMembers) {
+        alert("Maximum of 15 members allowed.");
+        return;
+      }
+      memberCount++;
+      const container = document.createElement("div");
+      container.className = "member";
+      container.dataset.memberId = memberCount;
+      container.innerHTML = `
+        <button type="button" class="remove-member-btn" onclick="removeMember(this)">Remove</button>
+        <h4>Member ${memberCount}</h4>
+        <label>IIA Member:
+          <select name="isIIAMember${memberCount}" onchange="toggleMemberField(this, ${memberCount})">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </label>
+        <div id="memberNoField${memberCount}" style="display:none;">
+          <label>Member No: <input type="text" name="memberNo${memberCount}"></label>
+        </div>
+        <label>Title:
+          <select name="memberCivilStatus${memberCount}" required>
+            <option>Mr</option>
+            <option>Mrs</option>
+            <option>Ms</option>
+            <option>Miss</option>
+            <option>Dr</option>
+            <option>Prof</option>
+            <option>Rev</option>
+          </select>
+        </label>
+        <label>First Name: <input type="text" name="memberFirstName${memberCount}" required></label>
+        <label>Last Name: <input type="text" name="memberLastName${memberCount}" required></label>
+        <label>Company Name: <input type="text" name="memberCompany${memberCount}" required></label>
+        <label>Designation: <input type="text" name="memberDesignation${memberCount}" required></label>
+        <label>Email: <input type="email" name="memberEmail${memberCount}" required></label>
+        <label>Contact No (+Code): <input type="tel" name="memberContact${memberCount}" pattern="\\+\\d{1,3}\\d{10}" required></label>
+      `;
+      document.getElementById("membersList").appendChild(container);
+      updateTotal();
+    }
+
+    function removeMember(button) {
+      button.parentElement.remove();
+      memberCount--;
+      renumberMembers();
+      updateTotal();
+    }
+
+    function toggleMemberField(select, id) {
+      const field = document.getElementById(`memberNoField${id}`);
+      field.style.display = select.value === "Yes" ? "block" : "none";
+    }
+
+    function renumberMembers() {
+      const members = document.querySelectorAll("#membersList .member");
+      let count = 0;
+      members.forEach((memberDiv) => {
+        count++;
+        memberDiv.querySelector("h4").textContent = `Member ${count}`;
+        memberDiv.dataset.memberId = count;
+      });
+      memberCount = count;
+    }
+
+    function updateTotal() {
+      const ticketPriceSelect = document.getElementById("ticketPrice");
+      let ticketPrice = parseInt(ticketPriceSelect.value) || 0;
+      let totalParticipants = 1 + memberCount;
+      let totalAmount = ticketPrice * totalParticipants;
+
+      document.getElementById("totalCount").textContent = totalParticipants;
+      document.getElementById("totalAmount").textContent = totalAmount.toLocaleString();
+    }
+
+    document.getElementById("ticketPrice").addEventListener("change", updateTotal);
+  </script>
+</body>
+</html>
